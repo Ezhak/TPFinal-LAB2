@@ -12,4 +12,5 @@ class Player{
 		void setPlayer();
 		void setTexturaPlayer();
 		void mover(float frame);
+		void updatePlayer(float frame);
 };
