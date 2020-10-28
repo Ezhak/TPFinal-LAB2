@@ -68,3 +68,47 @@ void Player::mover(float frame) {
 	}
 }
 
+void Player::updatePlayer(float frame) {
+	sf::Vector2u sizeTexture = _texturePlayer.getSize();
+	sizeTexture.x /= 9;
+	sizeTexture.y /= 1;
+
+	_spritePlayer.setTextureRect(sf::IntRect(sizeTexture.x * ((int)frame % 2), 0, sizeTexture.x, sizeTexture.y));
+
+	int random = rand() % 4 + 1;
+
+	if ((int)frame % 8 == 0) {
+		_spritePlayer.move(0.f, 0.5f);
+		for (int i = 0; i < random; i++)
+		{
+			_spritePlayer.setTextureRect(sf::IntRect(sizeTexture.x * ((int)frame % 8), 0, sizeTexture.x, sizeTexture.y));
+			_spritePlayer.setScale(-1, 1);
+		}
+	}
+	else {
+		switch ((int)frame % 10) {
+		case 2:
+			for (int i = 0; i < random; i++) {
+				_spritePlayer.move(0.5f, 0.f);
+				_spritePlayer.setTextureRect(sf::IntRect(sizeTexture.x * ((int)frame % 8), 0, sizeTexture.x, sizeTexture.y));
+				_spritePlayer.setScale(1, 1);
+			}
+			break;
+		case 4:
+			for (int i = 0; i < random; i++) {
+				_spritePlayer.move(0.f, -0.5f);
+				_spritePlayer.setTextureRect(sf::IntRect(sizeTexture.x * ((int)frame % 8), 0, sizeTexture.x, sizeTexture.y));
+				_spritePlayer.setScale(1, 1);
+			}
+			break;
+		case 6:
+			for (int i = 0; i < random; i++)
+			{
+				_spritePlayer.move(-0.5f, 0.f);
+				_spritePlayer.setTextureRect(sf::IntRect(sizeTexture.x * ((int)frame % 8), 0, sizeTexture.x, sizeTexture.y));
+				_spritePlayer.setScale(-1, 1);
+			}
+			break;
+		}
+	}
+}
